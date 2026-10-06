@@ -1,0 +1,7 @@
+create table if not exists public.resumes(id uuid primary key default gen_random_uuid(), user_id uuid references auth.users(id) on delete cascade, title text not null default 'My Resume', content jsonb not null default '{}'::jsonb, created_at timestamptz default now(), updated_at timestamptz default now());
+create table if not exists public.analyses(id uuid primary key default gen_random_uuid(), user_id uuid references auth.users(id) on delete cascade, resume_id uuid references public.resumes(id) on delete cascade, result jsonb not null, created_at timestamptz default now());
+create table if not exists public.shares(id uuid primary key default gen_random_uuid(), resume_id uuid references public.resumes(id) on delete cascade, user_id uuid references auth.users(id) on delete cascade, token text unique not null, expires_at timestamptz, created_at timestamptz default now());
+alter table public.resumes enable row level security; alter table public.analyses enable row level security; alter table public.shares enable row level security;
+create policy "users own resumes" on public.resumes for all using (auth.uid()=user_id) with check (auth.uid()=user_id);
+create policy "users own analyses" on public.analyses for all using (auth.uid()=user_id) with check (auth.uid()=user_id);
+create policy "users own shares" on public.shares for all using (auth.uid()=user_id) with check (auth.uid()=user_id);

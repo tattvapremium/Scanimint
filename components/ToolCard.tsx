@@ -1,0 +1,1 @@
+import Link from 'next/link';export default function ToolCard({title,desc,href,icon}:{title:string;desc:string;href:string;icon:string}){return <Link href={href} className="tool"><b>{icon} {title}</b><span>{desc}</span><small>Open tool →</small></Link>}

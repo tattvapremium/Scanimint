@@ -1,0 +1,2 @@
+import AppShell from '../../components/AppShell';
+export default function Settings(){return <AppShell><h1 className="title">Settings</h1><div className="card"><h3>Account</h3><p className="muted">Supabase authentication can be enabled using the provided environment variables.</p><h3>Privacy</h3><p className="muted">Keep shared resume links private and revoke them when no longer needed.</p></div></AppShell>}

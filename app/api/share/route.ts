@@ -1,0 +1,1 @@
+import {NextResponse} from 'next/server';export async function POST(req:Request){const {text=''}=await req.json();const id=crypto.randomUUID();return NextResponse.json({id,url:`${process.env.NEXT_PUBLIC_APP_URL||'http://localhost:3000'}/share/${id}`,text})}

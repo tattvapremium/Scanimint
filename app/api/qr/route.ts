@@ -1,0 +1,1 @@
+import {NextResponse} from 'next/server';import QRCode from 'qrcode';export async function GET(req:Request){const url=new URL(req.url).searchParams.get('url')||'';const data=await QRCode.toDataURL(url);return NextResponse.json({data})}

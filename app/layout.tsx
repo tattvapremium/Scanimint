@@ -1,0 +1,1 @@
+import './globals.css';export const metadata={title:'Scanimint — AI Resume & Career Platform',description:'AI-powered resume analysis, building and job matching'};export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en"><body>{children}</body></html>}
